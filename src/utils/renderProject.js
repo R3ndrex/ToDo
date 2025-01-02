@@ -101,10 +101,11 @@ class RenderProject {
             description.textContent = "";
             input.addEventListener("change", () => {
                 this.todos[i].description = input.value;
+                this.saveLocalTodos(this.projectDOM.dataset.index);
             });
             description.appendChild(input);
         });
-        description.addEventListener("mouseexit", () => {
+        description.addEventListener("mouseleave", () => {
             description.innerHTML = "";
             description.textContent = this.todos[i].description;
         });
