@@ -14,7 +14,6 @@ class TodoForm {
     setupCloseButton(button) {
         button.addEventListener("click", () => {
             this.dialog.close();
-            console.log(1);
         });
     }
     setupSubmitButton(button) {

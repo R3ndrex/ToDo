@@ -26,7 +26,6 @@ class ProjectContainer {
             return projectRenderer.project.name;
         });
         localStorage.setItem(`Projects`, JSON.stringify(projectNames));
-        console.log(projectNames);
     }
     renderDeletingProject(dialog) {
         dialog.innerHTML = "";

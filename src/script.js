@@ -16,7 +16,7 @@ const projectContainerInstance = new ProjectContainer(projectContainer);
 
 let projects = [];
 try {
-    const projectNames = JSON.parse(localStorage.getItem("Projects")); //['ergerhg', 'wefwef']
+    const projectNames = JSON.parse(localStorage.getItem("Projects"));
     projects = projectNames.map((name, index) => {
         const project = new Project(name);
         const todoItems = localStorage.getItem(`todoItems${index}`)
@@ -28,7 +28,7 @@ try {
         return project;
     });
 } catch (e) {
-    console.log(e);
+    console.error(e);
     projects = [
         new Project(
             "First Project",
@@ -49,6 +49,7 @@ const allProjects = projects.map((project) => {
 function createTodo(title, priority = 0, description, dueDate) {
     return new TodoItem(title, description, priority, dueDate);
 }
+
 function createProject(name) {
     return new RenderProject(projectContainer, new Project(name));
 }
