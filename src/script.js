@@ -67,6 +67,9 @@ const projectForm = new ProjectForm(
 );
 
 projectForm.setupSubmitButton(document.querySelector(".project-dialog button"));
+projectForm.setupExitButton(
+    document.querySelector(".close-project-form-creation")
+);
 
 todoFormRenderer.setupSubmitButton(
     document.querySelector(".todo-dialog button")
