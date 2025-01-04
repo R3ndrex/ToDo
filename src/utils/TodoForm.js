@@ -10,12 +10,6 @@ class TodoForm {
             this.dialog.showModal();
         });
     }
-
-    setupCloseButton(button) {
-        button.addEventListener("click", () => {
-            this.dialog.close();
-        });
-    }
     setupSubmitButton(button) {
         button.addEventListener("click", (e) => {
             e.preventDefault();

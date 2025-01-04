@@ -27,10 +27,5 @@ class ProjectForm {
             this.form.reset();
         });
     }
-    setupExitButton(button) {
-        button.addEventListener("click", () => {
-            this.dialog.close();
-        });
-    }
 }
 export default ProjectForm;
