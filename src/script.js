@@ -67,14 +67,16 @@ const projectForm = new ProjectForm(
 );
 
 projectForm.setupSubmitButton(document.querySelector(".project-dialog button"));
-projectForm.setupExitButton(
+addCloseButton(
+    projectForm,
     document.querySelector(".close-project-form-creation")
 );
 
 todoFormRenderer.setupSubmitButton(
     document.querySelector(".todo-dialog button")
 );
-todoFormRenderer.setupCloseButton(
+addCloseButton(
+    todoFormRenderer,
     document.querySelector(".close-todo-form-creation")
 );
 
@@ -99,3 +101,9 @@ projectContainerInstance.setEventListeners(
 mediator.subscribe("renderProjectContainer", () => {
     projectContainerInstance.render();
 });
+
+function addCloseButton(form, closeButton) {
+    closeButton.addEventListener("click", () => {
+        form.dialog.close();
+    });
+}
