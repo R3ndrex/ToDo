@@ -1,4 +1,5 @@
 import mediator from "./mediator";
+
 class ProjectContainer {
     constructor(container) {
         this.container = container;
@@ -27,36 +28,9 @@ class ProjectContainer {
         });
         localStorage.setItem(`Projects`, JSON.stringify(projectNames));
     }
-    renderDeletingProject(dialog) {
-        dialog.innerHTML = "";
-        const ul = document.createElement("ul");
-        const h2 = document.createElement("h2");
-        h2.textContent = "Which project to delete?";
-        ul.appendChild(h2);
-        ul.classList.add("projects");
-        this.projects.forEach((projectRenderer, index) => {
-            const button = document.createElement("button");
-            button.textContent = projectRenderer.project.name;
-            button.addEventListener("click", () => {
-                this.removeProject(index);
-                dialog.close();
-            });
-            ul.appendChild(button);
-        });
-        dialog.appendChild(ul);
-    }
-    setEventListeners(
-        addProjectButton,
-        deleteProjectButton,
-        dialogDeleteProject
-    ) {
+    setEventListeners(addProjectButton) {
         addProjectButton.addEventListener("click", () => {
             mediator.emit("openProjectForm", this.projects);
-        });
-
-        deleteProjectButton.addEventListener("click", () => {
-            this.renderDeletingProject(dialogDeleteProject);
-            dialogDeleteProject.showModal();
         });
     }
 }

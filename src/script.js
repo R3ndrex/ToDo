@@ -7,10 +7,10 @@ import RenderProject from "./utils/renderProject.js";
 import mediator from "./utils/mediator.js";
 import ProjectForm from "./utils/ProjectForm.js";
 import ProjectContainer from "./utils/ProjectContainer.js";
+import DeleteProjectForm from "./utils/deleteProjectForm.js";
 
 const projectContainer = document.querySelector(".projects-container");
 const dialogDeleteProject = document.querySelector(".delete-project-dialog");
-const deleteProjectButton = document.querySelector(".delete-project-button");
 const addProjectButton = document.querySelector(".add-project-button");
 const projectContainerInstance = new ProjectContainer(projectContainer);
 
@@ -88,19 +88,21 @@ addProjectButton.addEventListener("click", () => {
     mediator.emit("openProjectForm", projectContainerInstance.projects);
 });
 
-deleteProjectButton.addEventListener("click", () => {
-    dialogDeleteProject.showModal();
-});
-
-projectContainerInstance.setEventListeners(
-    addProjectButton,
-    deleteProjectButton,
-    dialogDeleteProject
+const deleteProjectForm = new DeleteProjectForm(
+    projectContainerInstance,
+    dialogDeleteProject,
+    document.querySelector(".delete-project-button")
 );
+projectContainerInstance.setEventListeners(addProjectButton);
 
 mediator.subscribe("renderProjectContainer", () => {
     projectContainerInstance.render();
 });
+
+addCloseButton(
+    deleteProjectForm,
+    document.querySelector(".close-button-deleting-project")
+);
 
 function addCloseButton(form, closeButton) {
     closeButton.addEventListener("click", () => {
