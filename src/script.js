@@ -27,8 +27,8 @@ try {
         });
         return project;
     });
-} catch (e) {
-    console.error(e);
+} catch (error) {
+    console.error(error);
     projects = [
         new Project(
             "First Project",
@@ -93,16 +93,16 @@ const deleteProjectForm = new DeleteProjectForm(
     dialogDeleteProject,
     document.querySelector(".delete-project-button")
 );
+addCloseButton(
+    deleteProjectForm,
+    document.querySelector(".close-button-deleting-project")
+);
+
 projectContainerInstance.setEventListeners(addProjectButton);
 
 mediator.subscribe("renderProjectContainer", () => {
     projectContainerInstance.render();
 });
-
-addCloseButton(
-    deleteProjectForm,
-    document.querySelector(".close-button-deleting-project")
-);
 
 function addCloseButton(form, closeButton) {
     closeButton.addEventListener("click", () => {
