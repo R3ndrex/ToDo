@@ -67,23 +67,33 @@ aside {
     grid-template-rows: 100px minmax(min-content, 5px);
     flex-direction: column;
 }
-.project button {
-    width: fit-content;
-    justify-self: center;
+
+button {
     background-color: red;
     border: none;
     color: white;
     font-weight: 1000;
-    margin-top: 1rem;
+    margin: 1rem 0.5rem;
+}
+
+.project button {
+    width: fit-content;
+    justify-self: center;
     align-self: auto;
 }
 .project > .todo {
     padding: 0 1rem;
 }
 
-/* remove todo button */
+/* closing button make in top right corner */
+[class^="close"] {
+    position: absolute;
+    right: -5px;
+    top: -5px;
+}
+/* button for removing todo element */
 img {
-    width: 24px;
+    width: 26px;
 }
 .dueDate {
     align-self: center;
@@ -135,6 +145,28 @@ button {
 }
 
 dialog {
-    width: 30%;
+    width: max(30%, 300px);
     font-size: larger;
+    overflow: hidden;
+}
+
+@media only screen and (max-width: 400px) {
+    body {
+        display: flex;
+        flex-direction: column;
+    }
+    aside {
+        grid-row: 2/3;
+        grid-column: 1/-1;
+        display: flex;
+        justify-content: space-between;
+        height: max(10%, 100px);
+    }
+    main {
+        grid-column: 1/-1;
+    }
+    .projects-container {
+        justify-content: center;
+        align-items: center;
+    }
 }
