@@ -98,6 +98,10 @@ addCloseButton(
     document.querySelector(".close-button-deleting-project")
 );
 
+[projectForm, todoFormRenderer, deleteProjectForm].forEach((form) =>
+    handleOutsideClick(form)
+);
+
 projectContainerInstance.setEventListeners(addProjectButton);
 
 mediator.subscribe("renderProjectContainer", () => {
@@ -107,5 +111,12 @@ mediator.subscribe("renderProjectContainer", () => {
 function addCloseButton(form, closeButton) {
     closeButton.addEventListener("click", () => {
         form.dialog.close();
+    });
+}
+function handleOutsideClick(form) {
+    window.addEventListener("click", (e) => {
+        if (e.target.contains(form.dialog)) {
+            form.dialog.close();
+        }
     });
 }
